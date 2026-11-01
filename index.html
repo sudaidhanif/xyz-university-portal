@@ -1,0 +1,341 @@
+<!doctype html>
+<!-- Copyright (c) 2026 Muhammad Sudaid Hanif. All rights reserved. No open-source licence is granted; choose and add a licence before redistributing. Fictional demo: not an official university system. -->
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="XYZ University Portal: a fictional demonstration of a university academic and student services portal. Not an official university system.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XYZ University Portal</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8' font-size='8'%3E🎓%3C/text%3E%3C/svg%3E">
+
+<style>
+:root{--p:#5f2c91;--bg:#fff;--tx:#1f1f1f;--mu:#555;--ln:#dcdcdc;--ft:#efefef;--zb:#efefef;--sh:0 2px 10px rgba(0,0,0,.12);--ic:#33333f;--err:#c0182b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--p:#b88be6;--bg:#16161a;--tx:#ececf0;--mu:#a9a9b4;--ln:#3a3a44;--ft:#23232a;--zb:#23232a;--sh:0 2px 10px rgba(0,0,0,.5);--ic:#cfcfdc;--err:#ff6b7a}}
+:root[data-theme="dark"]{--p:#b88be6;--bg:#16161a;--tx:#ececf0;--mu:#a9a9b4;--ln:#3a3a44;--ft:#23232a;--zb:#23232a;--sh:0 2px 10px rgba(0,0,0,.5);--ic:#cfcfdc;--err:#ff6b7a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:300 15px/1.5 Ubuntu,"Segoe UI",system-ui,sans-serif;letter-spacing:.2px}
+a{color:var(--p);text-decoration:none;cursor:pointer}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+header{position:fixed;top:0;left:0;right:0;height:85px;background:var(--bg);box-shadow:var(--sh);display:flex;align-items:center;gap:22px;padding:env(safe-area-inset-top,0px) 28px 0 0;z-index:20}
+.brand{display:flex;align-items:center;gap:6px;font-weight:500;font-size:26px;color:#0b4f6c;letter-spacing:1px;padding-left:4px;width:150px}
+.logo2{display:flex;align-items:center;gap:8px;font-weight:500;font-size:13px;line-height:1.1;color:var(--tx)}
+.logo2 svg{width:56px;height:56px}
+.hb{background:none;border:0;padding:6px;color:var(--ic)}
+.sp{flex:1}.hi{background:none;border:0;padding:4px;position:relative;color:var(--ic)}
+.hi.pu{color:var(--p)}.badge{position:absolute;top:-6px;right:-8px;background:#e53935;color:#fff;border-radius:10px;font-size:11px;padding:0 5px;font-weight:500}
+.av{width:44px;height:44px;border-radius:50%;background:#8aa4bf;color:#fff;border:0;font-weight:500;margin-left:8px}
+svg.i{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+nav.sb{position:fixed;top:calc(85px + env(safe-area-inset-top,0px));left:0;bottom:0;width:132px;background:var(--bg);box-shadow:var(--sh);z-index:15;overflow:auto;transition:transform .2s}
+nav.sb a,nav.sb button.n{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;height:101px;border:0;border-bottom:1px solid var(--ln);background:none;color:var(--tx);font-size:14px;position:relative;text-decoration:none}
+nav.sb svg.i{width:46px;height:46px;stroke-width:1.2;color:var(--ic)}
+nav.sb .act{color:var(--p)}nav.sb .act svg.i{color:var(--p)}
+nav.sb .act::after{content:"";position:absolute;right:0;bottom:0;border-style:solid;border-width:0 0 32px 32px;border-color:transparent transparent var(--p) transparent}
+.fly{position:fixed;top:calc(85px + env(safe-area-inset-top,0px));left:132px;width:300px;max-width:calc(100vw - 132px);background:var(--bg);box-shadow:var(--sh);z-index:14;bottom:0}
+.fly a{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid var(--ln);color:var(--tx);font-size:14px}
+.fly a.act{color:var(--p)}
+body.closed nav.sb{transform:translateX(-100%)}body.closed main{margin-left:0}
+main{margin-left:132px;padding:calc(85px + 20px + env(safe-area-inset-top,0px)) 24px 0 36px;min-height:100vh;transition:margin .2s}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-bottom:1px solid var(--ln);padding-bottom:10px;margin-bottom:10px;flex-wrap:wrap}
+.ph h1{margin:0;font-weight:300;font-size:28px}.crumb{font-size:14px}.crumb a{color:var(--tx);padding-right:10px;border-right:1px solid var(--tx);margin-right:8px}.crumb span{color:var(--p)}
+.card{background:var(--bg);box-shadow:var(--sh);border-radius:14px;padding:20px 22px;margin:14px 0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--ln);padding:8px 12px;text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--p)}
+table.z tbody tr:nth-child(odd){background:var(--zb)}
+th.s{cursor:pointer;user-select:none}th.s::after{content:" \21C5";color:#aaa;font-size:11px}
+th.s[aria-sort=ascending]::after{content:" \25B2";color:var(--tx)}th.s[aria-sort=descending]::after{content:" \25BC";color:var(--tx)}
+.tb{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+input[type=text],input[type=password],input[type=search]{font:inherit;padding:7px 10px;border:1px solid var(--ln);border-radius:4px;background:var(--bg);color:var(--tx)}
+.btn{background:var(--p);color:#fff;border:0;border-radius:4px;padding:9px 18px;font-weight:500}
+:root[data-theme="dark"] .btn,:root:not([data-theme="light"]) .btn{color:#fff}
+.btn.g{background:#1f7a3a}.rb{width:34px;height:34px;border-radius:50%;background:var(--p);border:0;color:#fff;font-size:18px;line-height:1}
+.day{display:inline-block;background:#e4e4e4;color:#222;border-radius:14px;padding:2px 12px;font-weight:500}
+table.tt td,table.tt th{height:60px}table.tt td:first-child{text-align:center;font-weight:400;min-width:200px}
+.foot{background:var(--ft);border-radius:14px 14px 0 0;padding:26px 30px;margin-top:40px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px;font-size:14px}
+.foot h3{font-weight:300;font-size:24px;margin:0 0 8px;line-height:1.2}.foot p{margin:0 0 14px;text-align:justify}.foot li{list-style:none;color:var(--p)}.foot ul{padding:0;margin:0}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px 10px;margin-top:18px}
+.mg button{background:none;border:0;color:var(--p);font-size:17px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px}
+.mg svg.i{width:70px;height:70px;stroke-width:1.3}
+.sm{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 30px;font-size:14px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:8px;z-index:50;max-width:90vw;font-size:14px}
+.demo{background:#fff6d6;color:#4a3b00;border-bottom:1px solid #e6d28a;text-align:center;font-size:13px;padding:4px 8px}
+.login{min-height:100vh;display:flex;flex-direction:column}
+.lw{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+.lc{width:100%;max-width:420px;box-shadow:var(--sh);border-radius:14px;padding:32px 30px}
+.lc h1{font-weight:300;font-size:30px;margin:0 0 6px}.lc p.s{margin:0 0 20px;color:var(--mu)}
+.fl{display:block;margin-bottom:14px}.fl span{display:block;margin-bottom:4px;font-weight:400}
+.fl input{width:100%;padding:10px 12px}.pw{position:relative}.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--p);font-size:13px;padding:6px}
+.err{color:var(--err);font-size:13px;margin-top:3px}.lr{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;margin:6px 0 18px;flex-wrap:wrap}
+.lc .btn{width:100%;padding:11px}.hint{font-size:13px;color:var(--mu);margin-top:16px;border-top:1px solid var(--ln);padding-top:12px}
+@media (max-width:900px){.foot{grid-template-columns:1fr}main{padding-left:20px}}
+@media (max-width:767px){body:not(.open) nav.sb{transform:translateX(-100%)}body:not(.open) .fly{display:none}main{margin-left:0!important;padding-right:14px;padding-left:14px}header{gap:10px;padding-right:12px}.brand{width:auto;font-size:20px}.logo2 span{display:none}.hh{display:none}.ph h1{font-size:22px}nav.sb{width:120px}.fly{left:120px}}
+:root{--ok:#1f7a3a}:root[data-theme=dark]{--ok:#6fd48d}:root[data-theme=dark] .btn{color:#16161a}
+select,input[type=date],input[type=number]{font:inherit;padding:7px 10px;border:1px solid var(--ln);border-radius:4px;background:var(--bg);color:var(--tx)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:14px 0}
+.sc{display:block;background:var(--bg);box-shadow:var(--sh);border-radius:14px;padding:16px 18px;color:var(--tx);border:1px solid transparent;transition:transform .15s,border-color .15s}
+.sc:hover{transform:translateY(-2px);border-color:var(--p);text-decoration:none}.sc b{font-size:26px;font-weight:500;display:block}.sc small{color:var(--mu);display:block;margin-top:6px}
+.bar{height:8px;background:var(--zb);border-radius:4px;overflow:hidden;margin-top:8px;min-width:80px}.bar i{display:block;height:100%;background:var(--p)}.bar.low i{background:var(--err)}
+.warn{border-left:4px solid var(--err);padding:10px 14px;background:var(--zb);border-radius:6px;margin:10px 0;font-size:14px}
+.tag{padding:1px 8px;border-radius:10px;font-size:12px;border:1px solid currentColor;white-space:nowrap}.tag.overdue{color:var(--err)}.tag.completed{color:var(--ok)}.tag.pending{color:var(--p)}
+.af{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}.af input[type=text]{width:240px;max-width:100%}.gr{font-weight:300;font-size:24px;margin:16px 0 0}
+.lk{background:none;border:0;color:var(--p);padding:4px}.btn.s{padding:5px 10px;font-size:13px}.btn.o{background:var(--zb);color:var(--tx)}
+.pop{position:fixed;top:calc(80px + env(safe-area-inset-top,0px));right:12px;width:330px;max-width:calc(100vw - 24px);background:var(--bg);box-shadow:var(--sh);border:1px solid var(--ln);border-radius:12px;z-index:40;overflow:hidden}
+.pop a,.ni{display:block;width:100%;text-align:left;border:0;background:none;color:var(--tx);padding:11px 14px;border-bottom:1px solid var(--ln);font-size:14px}.ni.un{border-left:4px solid var(--p);background:var(--zb)}.ni small{display:block;color:var(--mu)}
+.pop .ph2{display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--ln)}
+dialog{border:1px solid var(--ln);border-radius:14px;background:var(--bg);color:var(--tx);padding:20px;max-width:360px}dialog::backdrop{background:rgba(0,0,0,.45)}.dr{display:flex;gap:10px;justify-content:flex-end}
+@media (max-width:767px){.hi[data-ph=Notifications]{display:block}.btn,.hb,.hi{min-height:40px}}
+.login{background:linear-gradient(160deg,var(--zb),var(--bg) 60%)}.seg{display:flex;border:1px solid var(--ln);border-radius:8px;overflow:hidden;margin-bottom:16px}.seg button{flex:1;border:0;background:var(--bg);color:var(--tx);padding:10px;font-weight:500}.seg button.on{background:var(--p);color:#fff}:root[data-theme=dark] .seg button.on{color:#16161a}
+.btn:disabled{opacity:.6;cursor:wait}.pc{width:20px;height:20px}
+.lg{background:radial-gradient(900px 520px at 78% 72%,#4b3b8c66,transparent),radial-gradient(700px 480px at 12% 18%,#7a4f2c55,transparent),#12122b}
+.lc2{width:100%;max-width:570px;background:var(--bg);border-radius:14px;padding:34px 36px 40px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.lc2 h1{font-weight:300;font-size:32px;margin:18px 0 8px}.lc2 p.s{font-size:17px;color:var(--mu);margin:0 0 22px}
+.lc2 .fl span{color:var(--mu);font-weight:500;font-size:15px}.lc2 .fl input{height:50px;border-radius:6px}.lc2 .fl select{border-radius:6px}
+.lc2 .btn{width:auto;padding:12px 20px;font-size:17px;font-weight:400}.mut{color:var(--mu);font-size:17px;line-height:1.7;margin:4px 0 18px}
+.rm{display:flex;gap:10px;align-items:center;color:var(--mu);font-weight:500;margin:4px 0 18px}.rm input{width:22px;height:22px;accent-color:var(--p)}
+@media (max-width:600px){.lc2{padding:24px 18px 30px}.lc2 h1{font-size:26px}}
+.foot2{background:var(--ft);border-radius:14px 14px 0 0;padding:20px 28px;margin-top:40px;font-size:14px;color:var(--mu)}.foot2 p{margin:6px 0}.foot2 nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin:10px 0}.dis{opacity:.6;cursor:not-allowed;text-decoration:underline dotted}.lf{color:#d6d6e6;text-align:center;font-size:13px;padding:14px;margin:0}
+#app>.demo{position:fixed;top:calc(85px + env(safe-area-inset-top,0px));left:132px;right:0;z-index:12}body.closed #app>.demo{left:0}
+main{padding-top:calc(85px + 48px + env(safe-area-inset-top,0px))}
+@media (max-width:767px){#app>.demo{left:0}}
+:root[data-theme=dark] .btn.o{color:var(--tx)}:root[data-theme=dark] .btn.g{color:#fff}
+.hi:disabled{opacity:.45;cursor:not-allowed}.mg button:disabled{opacity:.6;cursor:not-allowed}.mg small{display:block;color:var(--mu);font-size:12px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body>
+<div id="app"></div><div id="toast" hidden role="status"></div>
+<script>
+/* ===== Demo only: authentication is simulated, nothing is stored or sent. Credentials: demo / demo123 ===== */
+/* ===== CONFIG: edit branding and the academic catalogue here ===== */
+const UNI={name:'XYZ University',short:'XYZ',tagline:'Student & Faculty Portal',desc:'University Academic and Student Services Portal',developer:'Muhammad Sudaid Hanif'};
+const yr=new Date().getFullYear();
+const credit=`<p class='lf'>Demonstration Portal, Fictional Sample Data. &copy; ${yr} ${UNI.name} Portal. All rights reserved.<br>Developed by ${UNI.developer}</p>`;
+const ph=t=>`<span class='dis' aria-disabled='true' title='Placeholder: not implemented in this demo'>${t} (placeholder)</span>`;
+const footer=`<footer class='foot2'><p><b>Demonstration Portal: Fictional Sample Data.</b> ${UNI.desc}. Dates are relative to the fixed demo date, 26 Oct 2026. This demo is not connected to an official university database and is not an official ${UNI.name} service.</p><nav aria-label='Footer'><a href='#/home'>Home</a>${ph('Help')}${ph('Privacy Notice')}${ph('Terms of Use')}${ph('Accessibility')}${ph('Contact')}</nav><p>&copy; ${yr} ${UNI.name} Portal. All rights reserved.</p><p>Developed by ${UNI.developer}</p></footer>`;
+const MT=['MTH-1405','Calculus and Analytical Geometry','Ms. A. Hart'],EN=['ENG-1011','Functional English','Ms. B. Lowe'],PF=['CSE-1101','Programming Fundamentals','Ms. F. Nolan',1],PH=['PHY-1015','Applied Physics','Mr. C. Doyle',1];
+/* program id -> {n:program name, d:department, s:{semester:[[code,title,teacher,hasLab]]}} */
+const CAT={BSCS:{n:'BS Computer Science',d:'Computer Science',s:{1:[PF,MT,EN,PH,['ICT-1507','Application of ICT','Engr. D. Marsh',1],['HUM-1001','Ethics and Society','Mr. E. Quill']],2:[['CSE-1201','Object Oriented Programming','Ms. F. Nolan',1],['CSE-1203','Discrete Structures','Mr. G. Ward'],['MTH-1406','Linear Algebra','Ms. A. Hart']]}},
+ BSAI:{n:'BS Artificial Intelligence',d:'Artificial Intelligence',s:{1:[['AIE-1101','Introduction to AI','Dr. H. Singh'],PF,MT,EN]}},
+ BSSE:{n:'BS Software Engineering',d:'Software Engineering',s:{1:[['SEN-1101','Introduction to Software Engineering','Dr. L. Moreau'],PF,MT,EN]}},
+ BEE:{n:'BE Electrical Engineering',d:'Electrical Engineering',s:{1:[['EEE-1101','Circuit Analysis I','Engr. I. Brandt',1],MT,PH,EN]}},
+ BCE:{n:'BE Civil Engineering',d:'Civil Engineering',s:{1:[['CVE-1101','Engineering Mechanics','Engr. J. Okoye'],['CVE-1103','Engineering Drawing','Engr. K. Lund',1],MT,EN]}},
+ BBA:{n:'BBA Business Administration',d:'Business Administration',s:{1:[['BUS-1101','Principles of Management','Dr. M. Adler'],['ACC-1101','Financial Accounting','Ms. N. Ford'],['ECO-1101','Microeconomics','Mr. O. Vance'],EN]}}};
+const $=s=>document.querySelector(s);
+const P={home:'M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10',book:'M6 3h12v18H6zM6 7h12M9 3v4',cal:'M4 5h16v16H4zM4 10h16M8 3v4M16 3v4M8 13h2M12 13h2M16 13h1M8 17h2M12 17h2M16 17h1',list:'M4 4h16v16H4zM8 9h8M8 13h8M8 17h8',folder:'M3 6h7l2 2h9v11H3zM3 11h18M9 15h6',layers:'M7 8h13v12H7zM4 11v9M10 5h10',video:'M3 4h18v14H3zM10 8l5 3-5 3z',bell:'M6 16V11a6 6 0 0112 0v5l2 2H4zM10 21h4',tool:'M7 20h10M9 20V9l3-6 3 6v11M7 14h10',move:'M12 3v18M3 12h18M9 6l3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3',chat:'M4 4h14v9H9l-4 3v-3H4zM10 16h9l1 3v-9h-2',coins:'M5 6c0-2 12-2 12 0s-12 2-12 0v12c0 2 12 2 12 0V6M5 12c0 2 12 2 12 0',card:'M3 7h18v10H3zM6 10h12v4H6z',cert:'M6 3h12v18H6zM9 8h6M12 11a2 2 0 100 4 2 2 0 000-4',clip:'M7 5h10v16H7zM9 3h6v4H9zM10 11h4M10 15h4',doc:'M5 4h14v16H5zM8 9h8M8 13h8',dl:'M12 4v11M7 11l5 5 5-5M5 20h14',arrow:'M5 12h14M13 6l6 6-6 6'};
+const ic=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true"><path d="${P[n]}"/></svg>`;
+const student={name:'Sam Carter',id:'26F-XX-001',program:'BS Computer Science [Morning]',sem:'Fall-2026'};
+const courses=[['MTH-1405','Calculus and Analytical Geometry','Ms. A. Hart',20,19,''],['ENG-1011','Functional English','Ms. B. Lowe',22,21,''],['PHY-1015','Applied Physics','Mr. C. Doyle',8,8,'-LAB'],['PHY-1015','Applied Physics','Mr. C. Doyle',16,15,''],['ICT-1507','Application of ICT','Engr. D. Marsh',7,6,'-LAB'],['ICT-1507','Application of ICT','Engr. D. Marsh',14,14,''],['HUM-1001','Ethics and Society','Mr. E. Quill',16,16,''],['CSE-1101','Programming Fundamentals','Ms. F. Nolan',8,8,'-LAB'],['CSE-1101','Programming Fundamentals','Ms. F. Nolan',24,22,'']].map((c,i)=>({n:i+1,code:c[0],title:c[1],teacher:c[2],tot:c[3],att:c[4],name:`${c[0]} - ${student.sem}${c[5]}`,course:`${c[0]} - ${c[1]}`,sem:student.sem,sec:'B',status:'Open',obe:'Yes'}));
+const clos=[{g:'CSE-1101 - Programming Fundamentals , CSE-1101 - Fall-2026-LAB , Fall-2026',r:[['CLO-1 Approved AC 25','Lab-CLO-1: Practise basic programming constructs to solve computing problems.',50,78],['CLO-2 Approved AC 25','Describe problem requirements and the data involved in a solution.',50,0]]},{g:'CSE-1101 - Programming Fundamentals , CSE-1101 - Fall-2026 , Fall-2026',r:[['CLO-1 Approved AC 25','Define fundamental concepts of structured programming.',50,100]]}];
+const miscItems=[['Complaint / Inquiry','chat'],['Fee Vouchers','coins'],['Semester Result Card','card'],['Download Transcript - GPA','cert'],['Clearance Form','clip'],['Academic Periods','list'],['Documents','doc']];
+const periods=[['Period-1','09:00:00-09:55:00'],['Period-II','10:00:00-10:55:00'],['Period-III','11:00:00-11:55:00'],['Period-IV','12:00:00-12:55:00'],['Period-V','14:00:00-14:55:00'],['Period-VI','15:00:00-15:55:00'],['Period-VII','16:00:00-16:55:00'],['Period-VIII','17:00:00-17:55:00'],['Postgraduate Evening Class','18:00:00-21:00:00'],['Period 1','18:00:00-21:00:00']];
+let authed=false,sideOpen=innerWidth>767,toastT,q='',sk='n',sd=1,wk=mon(new Date(2026,9,26)),loading=false;
+function mon(d){d=new Date(d);d.setDate(d.getDate()-((d.getDay()+6)%7));d.setHours(0,0,0,0);return d}
+const pct=(a,b)=>(b?+(a/b*100).toFixed(2):0)+'%';
+const fmt=d=>String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
+const ord=n=>n+(n>3&&n<21?'th':['th','st','nd','rd'][n%10]||'th');
+const mo=d=>d.toLocaleString('en',{month:'short'});
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,3200)}
+const NA='This control is not available in this demo.';
+
+/* ---------- shared layout ---------- */
+function crumb(t){return `<div class="crumb"><a href="#/home">Home</a><span>${t}</span></div>`}
+function head(t){return `<div class="ph"><h1>${t}</h1>${crumb(t)}</div>`}
+const nav=[['home','Home','home','#/home'],['courses','My Courses','book','#/courses'],['timetable','Time Table','cal','#/timetable'],['attendance','Attendance','list','#/attendance'],['assignments','Assignments','clip','#/assignments'],['obe','OBE','folder'],['misc','Misc','layers','#/misc']];
+const obeItems=[['clos','CLOs Attainment'],['plos','PLOs Attainment'],['plograph','PLOs Attainment Graph'],['transcript','Outcome Based Education Transcript']];
+const titles={home:'Ongoing Courses',courses:'My Courses',timetable:'Time Table',attendance:'Attendance',clos:'CLOs Attainment',plos:'PLOs Attainment',plograph:'PLOs Attainment Graph',transcript:'Outcome Based Education Transcript',misc:'Misc Options',assignments:'Assignments',profile:'Profile',faculty:'Faculty Login',forgot:'Forgot Password'};
+function shell(route,body){
+ const inObe=obeItems.some(o=>o[0]===route),fly=window.flyOpen||inObe&&window.flyOpen!==false&&false;
+ return `<div class="demo">Demo only. Fictional data, simulated sign-in, nothing is stored or sent.</div>
+ <header><div class="brand" aria-label="${UNI.name} logo"><svg class="i" viewBox="0 0 24 24" style="color:#0b4f6c"><path d="M3 18c4-2 6-7 9-12 3 5 5 10 9 12"/></svg>${UNI.short}</div>
+ <button class="hb" id="hb" aria-label="Toggle sidebar">${'<svg class="i" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'}</button>
+ <div class="logo2"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="25" fill="none" stroke="#0b6fa4" stroke-width="3"/><path d="M14 38l14-20 14 20z" fill="#0b6fa4"/></svg><span>${UNI.name}</span></div><div class="sp"></div>
+ ${[['video','Video'],['bell','Notifications',unread(),0],['tool','Alerts'],['move','Fullscreen']].map(h=>`<button class="hi hh ${h[3]?'pu':''}" data-ph="${h[1]}" aria-label="${h[1]}${h[1]==='Notifications'?'':' (not available in this demo)'}" ${h[1]==='Notifications'?'':'disabled title="Not available in this demo"'}>${ic(h[0])}${h[2]?`<span class="badge">${h[2]}</span>`:''}</button>`).join('')}
+ <button class="hi" id="thm" aria-label="Toggle light or dark theme" title="Toggle theme">${ic('moon')}</button><button class="av" id="prof" aria-label="Profile menu">${role==='faculty'?'FN':student.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</button></header>
+ <nav class="sb" aria-label="Main">${(role==='faculty'?fnav:nav).map(n=>n[3]?`<a href="${n[3]}" class="${route===n[0]?'act':''}" ${route===n[0]?'aria-current="page"':''}>${ic(n[2])}${n[1]}</a>`:`<button class="n ${inObe||window.flyOpen?'act':''}" id="obeb" aria-expanded="${!!window.flyOpen}">${ic(n[2])}${n[1]}</button>`).join('')}</nav>
+ ${window.flyOpen?`<div class="fly">${obeItems.map(o=>`<a href="#/${o[0]}" class="${route===o[0]?'act':''}">${ic('arrow','')}<span>${o[1]}</span></a>`).join('')}</div>`:''}
+ <main>${body}${footer}</main>`}
+
+/* ---------- pages ---------- */
+function rows(){const f=courses.filter(c=>[c.course,c.name,c.teacher].join(' ').toLowerCase().includes(q.toLowerCase())).sort((a,b)=>String(a[sk]).localeCompare(String(b[sk]),'en',{numeric:true})*sd);
+ lastN=f.length;return f.length?f.map(c=>`<tr><td>${c.n}</td><td><a href="#/attendance">${c.course}</a></td><td><a href="#/attendance">${c.name}</a></td><td>${c.sem}</td><td>${c.teacher}</td><td>${c.sec}</td><td>${c.status}</td><td>${c.obe}</td></tr>`).join(''):'<tr><td colspan="8">No matching records found.</td></tr>'}
+const pages={
+ home:()=>head('Ongoing Courses')+`<div style="padding:24px 22px"><p style="font-size:20px;margin:0 0 40px">Dear ${student.name} ,</p><p>As of now, there are no registered courses in the ongoing semester.</p><p>You can access your course history by clicking on <a href="#/courses">Click Here</a>.</p></div>`,
+ courses:()=>head('My Courses')+`<div class="card"><div class="tb"><span id="cn" aria-live="polite"></span><label>Search: <input type="search" id="q" value="${esc(q)}"></label></div><div class="tw"><table class="z"><thead><tr>${[['n','#'],['course','Course'],['name','Name'],['sem','Semester'],['teacher','Teacher'],['sec','Section'],['status','Status'],['obe','Use in OBE']].map(h=>`<th class="s" tabindex="0" data-k="${h[0]}" ${sk===h[0]?`aria-sort="${sd>0?'ascending':'descending'}"`:''}>${h[1]}</th>`).join('')}</tr></thead><tbody id="tb">${rows()}</tbody></table></div></div>`,
+ attendance:()=>{const T=courses.reduce((a,c)=>a+c.tot,0),A=courses.reduce((a,c)=>a+c.att,0);return head('Attendance')+`<div class="card"><div class="sm"><span>Total Class Room : ${courses.length}</span><span>Total Lectures : ${T}</span><span>Attended Lectures : ${A}</span><span>Attended Percentage : ${T?(A/T*100).toFixed(2):'n/a'} %</span></div></div><div class="card"><h2 style="font-weight:300;margin:0 0 10px;font-size:24px">${student.sem}</h2><div class="tw"><table class="z"><thead><tr><th>Course</th><th>Teacher</th><th>Total Lectures</th><th>Attended Lectures</th><th>Percentage</th></tr></thead><tbody>${courses.map(c=>`<tr><td><a href="#/courses">${c.course} (${c.name}) (${c.sec})</a></td><td>${c.teacher}</td><td>${c.tot}</td><td>${c.att}</td><td>${pct(c.att,c.tot)}</td></tr>`).join('')}<tr><td></td><td><b>Total :</b></td><td><b>${T}</b></td><td><b>${A}</b></td><td><b>${pct(A,T)}</b></td></tr></tbody></table></div></div>`},
+ timetable:()=>{const e=new Date(wk);e.setDate(e.getDate()+6);const ds=[...Array(7)].map((_,i)=>{const d=new Date(wk);d.setDate(d.getDate()+i);return d});
+  return head('Time Table')+`<div class="card"><div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><h2 style="font-weight:300;font-size:24px;margin:8px 0">${ord(wk.getDate())} ${mo(wk)} ${wk.getFullYear()} - ${ord(e.getDate())} ${mo(e)} ${e.getFullYear()}</h2><div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn" style="background:var(--zb);color:var(--tx)" id="dcal" aria-label="Focus date field">${'\u{1F4C5}'}</button><button class="btn" style="background:var(--zb);color:var(--tx)" id="dclr" aria-label="Reset to current week">\u2716</button><input type="text" id="dv" value="${fmt(wk)}" aria-label="Date (dd-mm-yyyy)"><button class="btn g" id="go">GO</button></div><div style="margin-top:12px;display:flex;gap:12px"><button class="rb" id="pv" aria-label="Previous week">\u2190</button><button class="rb" id="nx" aria-label="Next week">\u2192</button></div><div class="err" id="de"></div></div></div>
+  <div class="tw" style="margin-top:20px"><table class="tt"><thead><tr><th></th>${ds.map(d=>`<th style="text-align:center"><span class="day">${d.toLocaleString('en',{weekday:'short'}).toUpperCase()} ${d.getDate()}${d.getDate()===1?' '+mo(d).toUpperCase():''}</span></th>`).join('')}</tr></thead><tbody>${periods.map((p,pi)=>`<tr><td>${p[0]}<br><span style="font-weight:300">${p[1]}</span></td>${[0,1,2,3,4].map(d=>`<td>${ttc(d,pi)}</td>`).join('')}<td></td><td></td></tr>`).join('')}</tbody></table></div></div>`},
+ clos:()=>head('CLOs Attainment')+`<div class="card"><div class="tw"><table><thead><tr><th>CLO</th><th>CLO Description</th><th>PLOs</th><th>Required Percentage</th><th>CLO Attainment</th></tr></thead><tbody>${clos.map(g=>`<tr><td colspan="5"><b>${g.g}</b></td></tr>`+g.r.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td></td><td style="text-align:center">${r[2].toFixed(2)}</td><td style="text-align:center;${r[3]===0?'color:var(--err)':''}">${r[3].toFixed(2)}</td></tr>`).join('')).join('')}</tbody></table></div></div>`,
+ plos:()=>head('PLOs Attainment')+`<div class="card">No Data Found.</div>`,
+ plograph:()=>{let g='';for(let v=10;v<=100;v+=10){const y=300-v*2.7;g+=`<line x1="60" x2="960" y1="${y}" y2="${y}" stroke="var(--ln)" stroke-dasharray="3 3"/><text x="52" y="${y+3}" font-size="10" text-anchor="end" fill="currentColor">${v}</text>`}
+  return head('PLOs Attainment Graph')+`<div class="card"><b style="font-size:14px;font-weight:500">PLO Attainment criteria in graph, 50% of Marks</b><div class="tw"><svg viewBox="0 0 980 340" style="min-width:640px;width:100%;color:var(--tx)" role="img" aria-label="Empty PLO attainment chart, no data"><text x="490" y="14" text-anchor="middle" font-size="14" fill="currentColor">Program Learning Outcomes Attainment (${student.name}) - ${student.id}</text>${g}<line x1="60" x2="60" y1="25" y2="300" stroke="currentColor"/><line x1="60" x2="960" y1="300" y2="300" stroke="currentColor"/><text x="960" y="163" text-anchor="end" font-size="9" fill="#999">Required Student Achievement Threshold</text><text x="510" y="320" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">No Data</text><text transform="translate(18 170) rotate(-90)" font-size="10" text-anchor="middle" fill="currentColor">% Attainment</text></svg></div><i style="font-weight:500;font-size:14px">Above graph is being generated on the basis of ${courses.length} Courses studied</i></div>`},
+ transcript:()=>head('Outcome Based Education Transcript')+`<div class="card"><h2 style="font-weight:300;font-size:24px;margin:0">BSCS-2026 ( ${student.program} )</h2><p style="font-size:14px">Please download pdf of Outcome Based Education Transcript</p>${['Overall','Overall-Weighted','Semester 1'].map(t=>`<p style="font-size:20px;margin:14px 0"><button type="button" class="lk" style="font-size:20px" data-ph="Transcript download (${t}) is simulated in this demo; no file is generated.">${ic('dl').replace('class="i','class="i" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px" data-x="')}${t}</button></p>`).join('')}</div>`,
+ misc:()=>head('Misc Options')+`<div class="mg">${miscItems.map(m=>`<button disabled title="Not available in this demo">${ic(m[1])}${m[0]}<small>Not available in this demo</small></button>`).join('')}</div>`,
+ profile:()=>head('Profile')+`<div class="card"><p><b>Name:</b> ${student.name}</p><p><b>Student ID:</b> ${student.id}</p><p><b>Program:</b> ${student.program}</p><p><b>Semester:</b> ${student.sem}</p><button class="btn" id="out">Log out</button><p style="font-size:13px;color:var(--mu)">This minimal demo profile page exists so the avatar menu and logout work.</p></div>`
+};
+/* ===== v2 additions: theme, notifications, assignments, dashboard, attendance threshold ===== */
+let dark,thr=75,af='all',asc=1,nid=6;
+try{const s=localStorage.getItem('nf-theme');dark=s?s==='dark':matchMedia('(prefers-color-scheme:dark)').matches}catch(e){dark=false}
+function setTheme(d){dark=d;document.documentElement.dataset.theme=d?'dark':'light';try{localStorage.setItem('nf-theme',d?'dark':'light')}catch(e){}}
+setTheme(dark);
+const TODAY=new Date(2026,9,26);
+let asg=[{id:1,t:'Limits worksheet',c:'MTH-1405',d:'2026-10-24',done:false},{id:2,t:'Lab report 3',c:'PHY-1015',d:'2026-10-29',done:false},{id:3,t:'Hello World program',c:'CSE-1101',d:'2026-10-22',done:true},{id:4,t:'Essay draft',c:'ENG-1011',d:'2026-11-03',done:false},{id:5,t:'Spreadsheet exercise',c:'ICT-1507',d:'2026-11-06',done:false}];
+let notes=[{id:1,t:'Lab report 3 is due in 3 days',cat:'Assignments',when:'Today',link:'#/assignments',read:false},{id:2,t:'Attendance updated for Programming Fundamentals',cat:'Attendance',when:'Yesterday',link:'#/attendance',read:false},{id:3,t:'Timetable for 26 Oct week published',cat:'Timetable',when:'2 days ago',link:'#/timetable',read:false},{id:4,t:'Welcome to the demo portal',cat:'General',when:'3 days ago',link:'#/home',read:true}];
+const unread=()=>notes.filter(n=>!n.read).length;
+const dleft=a=>Math.round((new Date(a.d+'T00:00')-TODAY)/864e5);
+const st=a=>a.done?'completed':dleft(a)<0?'overdue':'pending';
+const due=a=>{const n=dleft(a);return a.done?'Done':n<0?`Overdue by ${-n} day${-n>1?'s':''}`:n===0?'Due today':`Due in ${n} day${n>1?'s':''}`};
+const tot=()=>courses.reduce((a,c)=>[a[0]+c.att,a[1]+c.tot],[0,0]);
+function ask(msg,ok,cb){const d=document.createElement('dialog');d.innerHTML=`<p>${msg}</p><div class="dr"><button class="btn o" id="cx">Cancel</button><button class="btn" id="y">${ok}</button></div>`;document.body.append(d);d.showModal();d.onclose=()=>d.remove();d.querySelector('#cx').onclick=()=>d.close();d.querySelector('#y').onclick=()=>{d.close();cb()}}
+function confirmOut(){ask('Log out of the demo portal?','Log out',()=>{closePop();authed=false;window.flyOpen=undefined;q='';location.hash='#/login';render();toast('You have been logged out')})}
+function closePop(){const p=$('#pop');if(p)p.remove()}
+addEventListener('click',e=>{if(!e.target.closest('#pop'))closePop()});addEventListener('keydown',e=>{if(e.key==='Escape')closePop()});
+function pop(k){const had=$('#pop');closePop();if(had&&had.dataset.k===k)return;const d=document.createElement('div');d.id='pop';d.className='pop';d.dataset.k=k;
+ d.innerHTML=k==='n'?`<div class="ph2"><b>Notifications (${unread()} unread)</b><button class="lk" id="mar">Mark all read</button></div>`+notes.map(n=>`<button class="ni ${n.read?'':'un'}" data-n="${n.id}">${n.t}<small>${n.cat}, ${n.when}${n.read?'':', unread'}</small></button>`).join(''):`<a href="#/profile">Profile</a><button class="ni" id="tg">Switch to ${dark?'light':'dark'} mode</button><button class="ni" id="lo">Log out</button>`;
+ document.body.append(d);
+ if(k==='n'){$('#mar').onclick=()=>{notes.forEach(n=>n.read=true);closePop();render();toast('All notifications marked read')};d.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{const n=notes.find(x=>x.id==b.dataset.n);n.read=true;closePop();location.hash=n.link;render()})}
+ else{$('#tg').onclick=()=>{setTheme(!dark);closePop();render()};$('#lo').onclick=()=>{closePop();confirmOut()}}}
+function extraBind(r){
+ $('#prof').onclick=e=>{e.stopPropagation();pop('u')};
+ const bl=document.querySelector('[data-ph="Notifications"]');bl.onclick=e=>{e.stopPropagation();pop('n')};
+ if(r==='attendance')$('#th').onchange=e=>{thr=Math.min(100,Math.max(0,+e.target.value||0));render()};
+ if(r==='assignments'){$('#af').onchange=e=>{af=e.target.value;render()};$('#as').onclick=()=>{asc=-asc;render()};
+  $('#asf').onsubmit=e=>{e.preventDefault();const t=$('#at').value.trim(),d=$('#ad').value;const bad=!t?'Enter a title.':t.length>120?'Title is too long (max 120 characters).':!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)?'Choose a valid due date.':'';$('#ae').textContent=bad;if(bad)return;asg.push({id:nid++,t:esc(t),c:esc($('#ac').value),d,done:false});toast('Assignment added');render()};
+  document.querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{const a=asg.find(x=>x.id==b.dataset.done);a.done=!a.done;toast(a.done?'Marked complete':'Reopened');render()});
+  document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>ask('Delete this assignment?','Delete',()=>{asg=asg.filter(x=>x.id!=b.dataset.del);toast('Assignment deleted');render()}))}}
+pages.home=()=>{const [A,T]=tot(),p=T?A/T*100:0,pend=sasg().filter(a=>!a.done).sort((a,b)=>a.d.localeCompare(b.d)),h=new Date().getHours(),g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+ return head('Ongoing Courses')+`<h2 class="gr">${g}, ${student.name.split(' ')[0]}</h2><div class="cards">
+ <a class="sc" href="#/attendance"><small>Attendance</small><b>${T?p.toFixed(1)+'%':'No data'}</b><div class="bar ${p<thr?'low':''}"><i style="width:${p}%"></i></div><small>${!T?'No courses enrolled':p<thr?'Below your '+thr+'% target':'Above your '+thr+'% target'}</small></a>
+ <a class="sc" href="#/assignments"><small>Assignments</small><b>${pend.length} pending</b><small>${pend.length?'Next: '+pend[0].t+', '+due(pend[0]).toLowerCase():'Nothing due'}</small></a>
+ <a class="sc" href="#/home" id="nc"><small>Notifications</small><b>${unread()} unread</b><small>Open the bell to read them</small></a>
+ <a class="sc" href="#/courses"><small>Courses</small><b>${courses.length} classes</b><small>${student.sem}</small></a></div>
+ <div class="card"><h2 style="font-weight:300;margin:0 0 8px;font-size:20px">Upcoming deadlines</h2>${pend.length?pend.slice(0,3).map(a=>`<p style="margin:6px 0"><a href="#/assignments">${a.t}</a> (${a.c}): ${due(a)}</p>`).join(''):'<p>All caught up. Add a task on the <a href="#/assignments">Assignments</a> page.</p>'}</div>
+ <div class="card"><h2 style='font-weight:300;margin:0 0 8px;font-size:20px'>Announcements</h2>${anns.filter(a=>a.c==='All'||courses.some(c=>c.code===a.c)).map(a=>`<p style='margin:6px 0'><b>${a.t}</b> (${a.c})<br>${a.b}</p>`).join('')||'<p>No announcements yet.</p>'}<p style='margin-bottom:0'><a href='#/courses'>View your ${courses.length} registered courses</a></p></div>`};
+const oldAtt=pages.attendance;
+pages.attendance=()=>{const low=courses.filter(c=>c.att/c.tot*100<thr),x=`<div class="card"><label>Minimum attendance target (%): <input type="number" id="th" min="0" max="100" value="${thr}"></label>${low.length?`<div class="warn" role="alert"><b>${low.length} course${low.length>1?'s are':' is'} below ${thr}%:</b> ${low.map(c=>c.name).join(', ')}</div>`:'<p style="color:var(--ok)">'+(courses.length?'Every course meets the target.':'No courses are enrolled for this semester, so there is no attendance data.')+'</p>'}${courses.map(c=>{const v=c.att/c.tot*100;return `<div style="display:grid;grid-template-columns:minmax(120px,1fr) 2fr 90px;gap:10px;align-items:center;font-size:14px"><span>${c.name}</span><div class="bar ${v<thr?'low':''}"><i style="width:${v}%"></i></div><span>${c.att}/${c.tot} (${v.toFixed(1)}%)</span></div>`}).join('')}</div>`;
+ return oldAtt().replace('</span></div></div>','</span></div></div>'+x)};
+pages.assignments=()=>{const L=sasg().filter(a=>af==='all'||st(a)===af).sort((a,b)=>a.d.localeCompare(b.d)*asc);
+ return head('Assignments')+`<div class="card"><form id="asf" class="af" novalidate><label>Title<br><input type="text" id="at"></label><label>Course<br><select id="ac">${[...new Set(courses.map(c=>c.code))].map(c=>`<option>${c}</option>`).join('')}</select></label><label>Due date<br><input type="date" id="ad"></label><button class="btn">Add assignment</button></form><div class="err" id="ae" role="alert"></div></div>
+ <div class="card"><div class="tb"><label>Show <select id="af">${['all','pending','overdue','completed'].map(v=>`<option ${v===af?'selected':''}>${v}</option>`).join('')}</select></label><button class="btn s o" id="as">Sort by due date ${asc>0?'(earliest first)':'(latest first)'}</button></div>
+ ${L.length?`<div class="tw"><table class="z"><thead><tr><th>Title</th><th>Course</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead><tbody>${L.map(a=>`<tr><td>${a.t}</td><td>${a.c}</td><td>${a.d}<br><small>${due(a)}</small></td><td><span class="tag ${st(a)}">${st(a)}</span></td><td><button class="btn s" data-done="${a.id}">${a.done?'Reopen':'Mark complete'}</button> <button class="btn s o" data-del="${a.id}">Delete</button></td></tr>`).join('')}</tbody></table></div>`:'<p>No assignments match this filter. Choose "all" or add one above.</p>'}</div>`};
+/* ===== v3: roles, login, faculty portal ===== */
+P.moon='M20 14A8 8 0 1110 4a7 7 0 0010 10z';
+let role='student',lrole='student',fsel=0,fdate='',aid=2,rec={};const done=new Set();
+const snotes=notes,fnotes=[{id:1,t:'Attendance for CSE-1101 not yet marked today',cat:'Attendance',when:'Today',link:'#/fattendance',read:false},{id:2,t:'Welcome to the faculty demo',cat:'General',when:'Today',link:'#/home',read:true}];
+const DEMO={student:['student@xyz.demo','demo123'],faculty:['faculty@xyz.demo','faculty123']};
+const em=v=>/^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/.test(v);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const unesc=s=>String(s).replace(/&#39;|&quot;|&lt;|&gt;|&amp;/g,m=>({'&#39;':"'",'&quot;':'"','&lt;':'<','&gt;':'>','&amp;':'&'}[m]));
+const FAC={name:'Ms. F. Nolan',dept:'Computer Science'};
+const roster=['Sam Carter','Lina Park','Omar Reyes','Priya Nair','Tomas Weber'];
+const DN=['Mon','Tue','Wed','Thu','Fri'];
+let anns=[{id:1,t:'Welcome to Fall-2026',b:'Classes follow the published timetable.',c:'All'}];
+const mine=()=>courses.filter(c=>c.teacher===FAC.name);
+const rk=(r,n)=>rec[r.n+n]||(rec[r.n+n]=[r.tot-(n.length%3===0?1:0),r.tot]);
+const cnt=(r,n)=>n===student.name?[r.att,r.tot]:rk(r,n);
+const fnav=[['home','Dashboard','home','#/home'],['fattendance','Attendance','list','#/fattendance'],['fassign','Assignments','clip','#/fassign'],['fann','Announcements','chat','#/fann']];
+Object.assign(titles,{fattendance:'Attendance',fassign:'Assignments',fann:'Announcements'});
+const fpages={
+ home:()=>{const m=mine(),codes=[...new Set(m.map(c=>c.code))],ps=asg.filter(a=>codes.includes(a.c)&&!a.done).length,my=sched.filter(s=>codes.includes(s[2]));
+  return head('Faculty Dashboard')+`<h2 class='gr'>Welcome, ${FAC.name}</h2><p>${FAC.dept} department, ${student.sem}</p><div class='cards'><a class='sc' href='#/fattendance'><small>Assigned sections</small><b>${m.length}</b><small>${codes.join(', ')}</small></a><a class='sc' href='#/fattendance'><small>Students per section</small><b>${roster.length}</b><small>Mark attendance</small></a><a class='sc' href='#/fassign'><small>Open assignments</small><b>${ps}</b><small>Create or manage</small></a><a class='sc' href='#/fann'><small>Announcements</small><b>${anns.length}</b><small>Publish to students</small></a></div><div class='card'><h2 style='font-weight:300;margin:0 0 8px;font-size:20px'>Weekly teaching schedule</h2>${my.map(s=>`<p style='margin:6px 0'>${DN[s[0]]}, ${periods[s[1]][0]} (${periods[s[1]][1].slice(0,5)}), ${s[2]}, ${s[3]}</p>`).join('')||'<p>No sessions scheduled.</p>'}</div>`},
+ fattendance:()=>{const m=mine(),r=m[fsel]||m[0];
+  return head('Attendance')+`<div class='card'><form id='fat' class='af' novalidate><label>Course section<br><select id='fc'>${m.map((c,i)=>`<option value='${i}' ${i===fsel?'selected':''}>${c.name}</option>`).join('')}</select></label><label>Class date<br><input type='date' id='fd' max='2026-10-26' value='${esc(fdate)}'></label><button class='btn'>Save attendance</button></form><div class='err' id='fe3' role='alert'></div><div class='tw'><table class='z'><thead><tr><th>Student</th><th>Present today</th><th>Attended / Total</th><th>%</th></tr></thead><tbody>${roster.map(n=>{const [a,t]=cnt(r,n);return `<tr><td>${n}</td><td><input type='checkbox' class='pc' data-n='${n}' checked aria-label='${n} present'></td><td>${a}/${t}</td><td>${pct(a,t)}</td></tr>`}).join('')}</tbody></table></div></div>`},
+ fassign:()=>{const codes=[...new Set(mine().map(c=>c.code))],L=asg.filter(a=>codes.includes(a.c)).sort((a,b)=>a.d.localeCompare(b.d));
+  return head('Assignments')+`<div class='card'><form id='fas' class='af' novalidate><label>Title<br><input type='text' id='ft'></label><label>Course<br><select id='fcc'>${codes.map(c=>`<option>${c}</option>`).join('')}</select></label><label>Due date<br><input type='date' id='fdd'></label><button class='btn'>Create assignment</button></form><div class='err' id='fe4' role='alert'></div></div><div class='card'>${L.length?`<div class='tw'><table class='z'><thead><tr><th>Title</th><th>Course</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead><tbody>${L.map(a=>`<tr><td>${a.t}</td><td>${a.c}</td><td>${a.d}</td><td><span class='tag ${st(a)}'>${st(a)}</span></td><td><button class='btn s o' data-fdel='${a.id}'>Delete</button></td></tr>`).join('')}</tbody></table></div>`:'<p>No assignments yet. Create one above.</p>'}</div>`},
+ fann:()=>{const codes=[...new Set(mine().map(c=>c.code))];
+  return head('Announcements')+`<div class='card'><form id='fan' novalidate><label class='fl'><span>Title</span><input type='text' id='nt' style='width:100%'></label><label class='fl'><span>Message</span><textarea id='nb' rows='3' style='width:100%;font:inherit;padding:8px;border:1px solid var(--ln);border-radius:4px;background:var(--bg);color:var(--tx)'></textarea></label><label class='fl'><span>Audience</span><select id='na'><option>All</option>${codes.map(c=>`<option>${c}</option>`).join('')}</select></label><button class='btn'>Publish</button><div class='err' id='fe5' role='alert'></div></form></div><div class='card'>${anns.map(a=>`<div style='padding:8px 0;border-bottom:1px solid var(--ln)'><b>${a.t}</b> <span class='tag pending'>${a.c}</span><br>${a.b}<br><button class='btn s o' data-adel='${a.id}'>Remove</button></div>`).join('')||'<p>No announcements.</p>'}</div>`},
+ profile:()=>head('Profile')+`<div class='card'><p><b>Name:</b> ${FAC.name}</p><p><b>Department:</b> ${FAC.dept}</p><p><b>Email:</b> ${DEMO.faculty[0]}</p><p><b>Assigned sections:</b> ${mine().map(c=>c.name).join(', ')}</p><button class='btn o' id='tg2'>Switch to ${dark?'light':'dark'} mode</button> <button class='btn' id='out'>Log out</button><p style='font-size:13px;color:var(--mu)'>Faculty can manage only their own sections here. Grades, fees and account administration are not available to this role.</p></div>`};
+confirmOut=()=>ask('Log out of the demo portal?','Log out',()=>{closePop();const was=role;authed=false;role='student';notes=snotes;window.flyOpen=undefined;q='';lrole=was;location.hash=was==='faculty'?'#/faculty':'#/login';render();toast('You have been logged out')});
+const eb0=extraBind;
+extraBind=r=>{eb0(r);$('#thm').onclick=()=>{setTheme(!dark);render()};
+ if(role==='student'&&r==='transcript')document.querySelectorAll('main button[data-ph]').forEach(a=>a.onclick=()=>{const t=a.textContent.trim(),txt=`SAMPLE TRANSCRIPT (${t}) - NOT OFFICIAL\n${unesc(student.name)} ${unesc(student.id)}\n${student.program}\n\n`+courses.map(c=>`${c.name}  ${c.course}  attendance ${pct(c.att,c.tot)}`).join('\n'),l=document.createElement('a');l.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'}));l.download='sample-transcript-'+t.replace(/\W+/g,'-').toLowerCase()+'.txt';l.click();setTimeout(()=>URL.revokeObjectURL(l.href),4000);toast('Sample transcript generated')});
+ if(role!=='faculty')return;
+ if(r==='profile')$('#tg2').onclick=()=>{setTheme(!dark);render()};
+ if(r==='fattendance'){$('#fc').onchange=e=>{fsel=+e.target.value;render()};$('#fd').onchange=e=>fdate=e.target.value;
+  $('#fat').onsubmit=e=>{e.preventDefault();const row=mine()[fsel],d=$('#fd').value,k=row.n+'|'+d,E=$('#fe3');
+   if(!d){E.textContent='Choose the class date.';return}if(d>'2026-10-26'){E.textContent='The class date cannot be in the future.';return}if(done.has(k)){E.textContent='Attendance for this section and date is already saved.';return}
+   roster.forEach(n=>rk(row,n));row.tot++;
+   document.querySelectorAll('.pc').forEach(c=>{const n=c.dataset.n;if(n===student.name){if(c.checked)row.att++}else{const x=rec[row.n+n];x[1]++;if(c.checked)x[0]++}});
+   done.add(k);snotes.unshift({id:Date.now(),t:'Attendance updated for '+row.name,cat:'Attendance',when:'Just now',link:'#/attendance',read:false});fdate='';toast('Attendance saved for '+d);render()}}
+ if(r==='fassign'){$('#fas').onsubmit=e=>{e.preventDefault();const t=$('#ft').value.trim(),d=$('#fdd').value;const bad=!t?'Enter a title.':t.length>120?'Title is too long (max 120 characters).':!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(d)?'Choose a valid due date.':'';$('#fe4').textContent=bad;if(bad)return;
+   asg.push({id:nid++,t:esc(t),c:esc($('#fcc').value),d,done:false});snotes.unshift({id:Date.now(),t:'New assignment: '+esc(t),cat:'Assignments',when:'Just now',link:'#/assignments',read:false});toast('Assignment created and visible to students');render()};
+  document.querySelectorAll('[data-fdel]').forEach(b=>b.onclick=()=>ask('Delete this assignment for all students?','Delete',()=>{asg=asg.filter(x=>x.id!=b.dataset.fdel);toast('Assignment deleted');render()}))}
+ if(r==='fann'){$('#fan').onsubmit=e=>{e.preventDefault();const t=$('#nt').value.trim(),b=$('#nb').value.trim();$('#fe5').textContent=!t?'Enter a title.':!b?'Enter a message.':(t.length>120||b.length>1000)?'Title max 120 and message max 1000 characters.':'';if(!t||!b||t.length>120||b.length>1000)return;
+   const a=$('#na').value;anns.unshift({id:aid++,t:esc(t),b:esc(b),c:a});snotes.unshift({id:Date.now(),t:'Announcement: '+esc(t),cat:'Announcements',when:'Just now',link:'#/home',read:false});toast('Announcement published to '+a);render()};
+  document.querySelectorAll('[data-adel]').forEach(b=>b.onclick=()=>ask('Remove this announcement?','Remove',()=>{anns=anns.filter(x=>x.id!=b.dataset.adel);toast('Announcement removed');render()}))}};
+/* ===== v4: catalogue-driven data, accounts, login/registration ===== */
+let sched=[];const CACHE={};
+const sasg=()=>asg.filter(a=>courses.some(c=>c.code===a.c));
+function loadCourses(pid,sem,sec){const k=pid+'|'+sem+'|'+sec;
+ if(CACHE[k]){courses.length=0;courses.push(...CACHE[k])}else{const list=(CAT[pid]&&CAT[pid].s[sem])||[];courses.length=0;
+  list.forEach(x=>(x[3]?[0,1]:[0]).forEach(L=>{const h=[...x[0]].reduce((a,c)=>a+c.charCodeAt(0),0)+L*7,tot=L?6+h%4:14+h%12,sfx=L?'-LAB':'';courses.push({n:courses.length+1,code:x[0],title:x[1],teacher:x[2],tot,att:tot-h%3,name:`${x[0]} - ${student.sem}${sfx}`,course:`${x[0]} - ${x[1]}`,sem:student.sem,sec,status:'Open',obe:'Yes'})}));CACHE[k]=courses.slice()}
+ sched=[];courses.forEach((c,i)=>{const r=c.name.endsWith('LAB')?'Lab ':'Room ';sched.push([i%5,Math.floor(i/5)*2,c.code,r+(100+i*3),i],[(i+2)%5,Math.floor(i/5)*2+1,c.code,r+(101+i*3),i])})}
+const ttc=(d,p)=>{const s=sched.find(x=>x[0]===d&&x[1]===p);if(!s)return '';const c=courses[s[4]];return `<b>${c.code}${c.name.endsWith('LAB')?' Lab':''}</b><br><small>${c.teacher}<br>${s[3]}</small>`};
+const c0=pages.clos;pages.clos=()=>student.pid==='BSCS'?c0():head('CLOs Attainment')+`<div class='card'>No CLO data is configured for ${student.program}.</div>`;
+const NAME_RE=/^[\p{L}\p{M}0-9 .'-]{1,80}$/u,SID_RE=/^[A-Za-z0-9-]{1,30}$/;
+const okAcct=a=>!!a&&typeof a==='object'&&typeof a.email==='string'&&em(a.email)&&typeof a.name==='string'&&NAME_RE.test(a.name)&&typeof a.sid==='string'&&SID_RE.test(a.sid)&&Object.prototype.hasOwnProperty.call(CAT,a.pid)&&Number.isInteger(a.sem)&&a.sem>=1&&a.sem<=8&&['A','B','C','D'].includes(a.sec)&&/^[0-9a-f]{64}$/.test(a.hash||'')&&typeof a.salt==='string'&&/^[0-9]{1,3}(-[0-9]{1,3}){7,31}$/.test(a.salt)&&(a.it===undefined||(Number.isInteger(a.it)&&a.it>=100000&&a.it<=1000000));
+let accts=[];try{accts=JSON.parse(localStorage.getItem('xyz-accts')||'[]')}catch(e){}
+accts=Array.isArray(accts)?accts.filter(okAcct):[];
+const saveA=()=>{try{localStorage.setItem('xyz-accts',JSON.stringify(accts))}catch(e){}};
+async function hp(pw,salt,it=100000){if(!Number.isInteger(it)||it<100000||it>1000000)throw new Error('invalid iteration count');const en=new TextEncoder(),k=await crypto.subtle.importKey('raw',en.encode(pw),'PBKDF2',false,['deriveBits']),b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:en.encode(salt),iterations:it,hash:'SHA-256'},k,256);return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const SEEDS={student:{name:'Sam Carter',sid:'26F-XX-001',pid:'BSCS',sem:1,sec:'B'}};
+function applyStudent(a){Object.assign(student,{name:esc(a.name),id:esc(a.sid),program:CAT[a.pid].n,pid:a.pid,dept:CAT[a.pid].d});loadCourses(a.pid,a.sem,a.sec)}
+applyStudent(SEEDS.student);
+const logo=`<div style='text-align:center'><svg viewBox='0 0 330 60' width='260' role='img' aria-label='${UNI.name} logo'><path d='M10 50c18-4 30-14 36-34 6 14 16 26 34 30' fill='none' stroke='#0b6fa4' stroke-width='3'/><text x='96' y='46' font-size='44' font-weight='500' fill='#0b6fa4' font-family='Ubuntu,sans-serif' letter-spacing='3'>${UNI.short}</text></svg></div>`;
+const field=(id,lab,type='text',x='')=>`<label class='fl'><span>${lab}</span><input id='${id}' type='${type}' autocomplete='${type==='password'?'new-password':'off'}' ${x}><div class='err' id='${id}e'></div></label>`;
+const sel=(id,lab,o)=>`<label class='fl'><span>${lab}</span><select id='${id}' style='width:100%;height:50px'>${o}</select></label>`;
+function login(r){if(r==='faculty'||r==='login')lrole=r==='faculty'?'faculty':'student';
+ const pg=x=>`<div class='login lg'><div class='demo'>Demo only. Registered accounts live in this browser only; no real university system is connected.</div><div class='lw'><div class='lc2'>${logo}${x}</div></div>${credit}</div>`;
+ if(r==='forgot')return pg(`<h1>Reset password</h1><p class='s'>Enter the email registered to your account.</p><form id='ff' novalidate><fieldset style='border:0;padding:0;margin:0 0 12px'><legend>I am a</legend><label><input type='radio' name='fr' value='student' ${lrole==='student'?'checked':''}> Student</label> <label><input type='radio' name='fr' value='faculty' ${lrole==='faculty'?'checked':''}> Faculty</label></fieldset>${field('fe2','Registered email','text','inputmode=email')}<button class='btn'>Send reset link</button></form><div id='frs' role='status'></div><p class='mut'><a href='#/login'>Back to login</a></p>`);
+ if(r==='register'){const ds=[...new Set(Object.values(CAT).map(v=>v.d))];return pg(`<h1>Student Registration</h1><p class='s'>Create an account. Faculty accounts are issued by an administrator.</p><form id='rf' novalidate>${field('rn','Full name')}${field('re','Email address','text','inputmode=email')}${field('rpw','Password (8+ characters, letters and a number)','password')}${field('rpc','Confirm password','password')}${field('ri','Student ID')}${sel('rd','Department',ds.map(d=>`<option>${d}</option>`).join(''))}${sel('rp','Degree program','')}${sel('rs','Semester',[1,2,3,4,5,6,7,8].map(n=>`<option>${n}</option>`).join(''))}${sel('rc','Section',['A','B','C','D'].map(n=>`<option>${n}</option>`).join(''))}<div class='err' id='rfe' role='alert'></div><button class='btn' id='rb'>Create account</button></form><p class='mut'>Already registered? <a href='#/login'>Sign in</a></p>`)}
+ const d=DEMO[lrole],F=lrole==='faculty';
+ return pg(`<h1>${F?'Faculty':'Student'} Login</h1><p class='s'>Please fill out the following fields to login:</p><form id='lf' novalidate>${field('lem','Email Address','text','inputmode=email')}<label class='fl'><span>Password</span><div class='pw'><input id='lpw' type='password' autocomplete='current-password'><button type='button' id='sh'>Show</button></div><div class='err' id='lpe'></div></label><label class='rm'><input type='checkbox' disabled> Remember Me <small>(not available in this demo)</small></label><p class='mut'>Are you a ${F?'Student':'Faculty'}? <a href='#/${F?'login':'faculty'}'>Login Here</a><br>If you forgot your password you can <a href='#/forgot'>reset it</a>.${F?'':'<br>New student? <a href="#/register">Register here</a>.'}</p><div class='err' id='lfe' role='alert'></div><button class='btn' id='lb' type='submit'>Login</button></form><p class='hint'>Public demo ${lrole} credentials (never reuse in production): ${d[0]} / ${d[1]} <button type='button' class='lk' id='fill'>Fill</button></p>`)}
+function bindLogin(){
+ const ff=$('#ff');if(ff)ff.onsubmit=e=>{e.preventDefault();const v=$('#fe2').value.trim();$('#fe2e').textContent=!v?'Enter your email.':em(v)?'':'Enter a valid email address.';if(!v||!em(v))return;{const m=document.createElement('p');m.className='warn';m.textContent='Demo only: a live system would send a reset link for the '+ff.querySelector('[name=fr]:checked').value+' account '+v+'. No email was sent.';$('#frs').replaceChildren(m)}};
+ const rf=$('#rf');if(rf){const fp=()=>{$('#rp').innerHTML=Object.entries(CAT).filter(e=>e[1].d===$('#rd').value).map(e=>`<option value='${e[0]}'>${e[1].n}</option>`).join('')};fp();$('#rd').onchange=fp;
+  rf.onsubmit=async e=>{e.preventDefault();const v=id=>$('#'+id).value.trim(),n=v('rn'),m=v('re').toLowerCase(),pw=$('#rpw').value,pc=$('#rpc').value,si=v('ri'),E=(id,t)=>{$('#'+id+'e').textContent=t;return !t};
+   const ok=[E('rn',!n?'Enter your full name.':NAME_RE.test(n)?'':'Use letters, numbers, spaces, . - and apostrophes only (max 80).'),E('re',!m?'Enter your email.':!em(m)?'Enter a valid email address.':(accts.some(a=>a.email===m)||m===DEMO.student[0]||m===DEMO.faculty[0])?'An account with this email already exists.':''),E('rpw',/^(?=.*[A-Za-z])(?=.*[0-9]).{8,128}$/.test(pw)?'':'Use 8+ characters with letters and a number.'),E('rpc',pw===pc?'':'Passwords do not match.'),E('ri',!si?'Enter your student ID.':!SID_RE.test(si)?'Use letters, numbers and hyphens only (max 30).':(accts.some(a=>a.sid===si)||si===SEEDS.student.sid)?'This student ID is already registered.':'')];
+   if(ok.includes(false))return;const pid0=$('#rp').value,sem0=+$('#rs').value;if(!Object.prototype.hasOwnProperty.call(CAT,pid0)||!(sem0>=1&&sem0<=8)||!['A','B','C','D'].includes($('#rc').value)){$('#rfe').textContent='Choose a valid program, semester and section.';return}
+   if(!(window.crypto&&crypto.subtle)){$('#rfe').textContent='Password hashing is unavailable in this browser, so registration is disabled.';return}
+   const b=$('#rb');b.disabled=true;b.textContent='Creating...';const salt=crypto.getRandomValues(new Uint8Array(16)).join('-');
+   accts.push({email:m,name:n,sid:si,it:600000,pid:$('#rp').value,sem:+$('#rs').value,sec:$('#rc').value,salt,hash:await hp(pw,salt,600000)});saveA();toast('Account created. You can now sign in.');lrole='student';location.hash='#/login'}}
+ const f=$('#lf');if(!f)return;
+ $('#fill').onclick=()=>{$('#lem').value=DEMO[lrole][0];$('#lpw').value=DEMO[lrole][1]};
+ $('#sh').onclick=()=>{const i=$('#lpw'),s=i.type==='password';i.type=s?'text':'password';$('#sh').textContent=s?'Hide':'Show'};
+ f.onsubmit=async e=>{e.preventDefault();const u=$('#lem').value.trim().toLowerCase(),w=$('#lpw').value,b=$('#lb');
+  $('#leme').textContent=!u?'Enter your email.':em(u)?'':'Enter a valid email address.';$('#lpe').textContent=w?'':'Enter your password.';$('#lfe').textContent='';
+  if(!u||!em(u)||!w||b.disabled)return;b.disabled=true;b.textContent='Signing in...';await new Promise(r=>setTimeout(r,500));
+  const d=DEMO[lrole];let a=null;
+  if(u===d[0]&&w===d[1])a=lrole==='faculty'?{role:'faculty'}:Object.assign({role:'student'},SEEDS.student);
+  else if(lrole==='student'){const x=accts.find(y=>y.email===u);if(x&&window.crypto&&crypto.subtle&&await hp(w,x.salt,x.it||100000)===x.hash)a=Object.assign({role:'student'},x)}
+  if(!a){b.disabled=false;b.textContent='Login';$('#lfe').textContent='Email or password is incorrect for the selected role.';return}
+  role=a.role;authed=true;applyStudent(role==='faculty'?SEEDS.student:a);notes=role==='faculty'?fnotes:(a.sid===SEEDS.student.sid?snotes:(NM[a.email]=NM[a.email]||[{id:1,t:'Welcome to the demo portal',cat:'General',when:'Today',link:'#/home',read:false}]));location.hash='#/home';render()}}
+/* ===== v5: QA fixes ===== */
+let lastN=0;const NM={};
+function cnUpd(){const el=$('#cn');if(el)el.textContent=`Showing ${lastN?1:0} to ${lastN} of ${courses.length} entries${lastN<courses.length?' (filtered)':''}`}
+const pop0=pop;pop=function(k){pop0(k);const p=$('#pop');if(!p)return;p.setAttribute('role','dialog');p.setAttribute('aria-label',k==='n'?'Notifications':'Account menu');p.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closePop()));const f=p.querySelector('button,a');if(f)f.focus()};
+const eb1=extraBind;extraBind=r=>{eb1(r);const nc=$('#nc');if(nc)nc.onclick=e=>{e.preventDefault();e.stopPropagation();pop('n')}};
+/* ---------- login ---------- */
+/* ---------- render ---------- */
+function route(){return (location.hash.replace('#/','')||'home')}
+function render(){const r=route(),a=$('#app');
+ if(!authed){if(!['login','faculty','forgot','register'].includes(r)){location.hash='#/login';return}a.innerHTML=login(r);document.body.className='';bindLogin();return}
+ if(['login','faculty','forgot','register'].includes(r)){location.hash='#/home';return}
+ const tbl=role==='faculty'?fpages:pages,p=Object.prototype.hasOwnProperty.call(tbl,r)?tbl[r]:null;document.body.className=(sideOpen?'open':'')+(sideOpen||innerWidth<=767?'':' closed');
+ if(!p){a.innerHTML=shell('x',`${head('Page not found')}<div class="card">This page does not exist. <a href="#/home">Go home</a>.</div>`);return bind('notfound')}
+ if(obeItems.some(o=>o[0]===r)&&window.flyOpen===undefined)window.flyOpen=false;
+ a.innerHTML=shell(r,loading?'<div class="card">Loading…</div>':p());document.title=(Object.prototype.hasOwnProperty.call(titles,r)?titles[r]:'')+' | '+UNI.name+' Portal';bind(r)}
+function bind(r){
+ $('#hb').onclick=()=>{sideOpen=!sideOpen;render()};
+ document.querySelectorAll('[data-ph]').forEach(b=>b.onclick=()=>toast(b.dataset.ph.length>40?b.dataset.ph:b.dataset.ph+': '+NA));
+ const ob=$('#obeb');if(ob)ob.onclick=()=>{window.flyOpen=!window.flyOpen;render()};
+ document.querySelectorAll('nav.sb a').forEach(a=>a.addEventListener('click',()=>{window.flyOpen=false;if(innerWidth<=767)sideOpen=false}));
+ extraBind(r);const o=$('#out');if(o)o.onclick=confirmOut;
+ if(r==='courses'){cnUpd();$('#q').oninput=e=>{q=e.target.value;$('#tb').innerHTML=rows();cnUpd()};
+  document.querySelectorAll('th.s').forEach(h=>{const go=()=>{sd=sk===h.dataset.k?-sd:1;sk=h.dataset.k;const v=q;render();$('#q').value=v};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter')go()}})}
+ if(r==='timetable'){const sh=n=>{wk=new Date(wk.getFullYear(),wk.getMonth(),wk.getDate()+n);render()};$('#pv').onclick=()=>sh(-7);$('#nx').onclick=()=>sh(7);$('#dcal').onclick=()=>$('#dv').focus();$('#dclr').onclick=()=>{wk=mon(new Date(2026,9,26));render()};
+  $('#go').onclick=()=>{const m=/^(\d{2})-(\d{2})-(\d{4})$/.exec($('#dv').value.trim());const d=m&&new Date(+m[3],+m[2]-1,+m[1]);if(!m||d.getMonth()!==+m[2]-1){$('#de').textContent='Use dd-mm-yyyy, e.g. 26-10-2026.';return}wk=mon(d);render()}}}
+addEventListener('hashchange',render);addEventListener('resize',()=>{if(innerWidth>767&&!sideOpen)return});
+if(innerWidth<=767)sideOpen=false;if(!location.hash)location.hash='#/login';render();
+</script></body></html>
