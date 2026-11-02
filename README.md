@@ -39,3 +39,5 @@ Real accounts and password reset; server-side authentication, sessions and per-r
 
 ## Licence
 Copyright (c) 2026 Muhammad Sudaid Hanif. All rights reserved. No open-source licence has been chosen; add one before allowing reuse.
+
+
